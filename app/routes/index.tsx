@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {Favorites, Home, Product, Profile} from '../pages';
+import {Favorites, Home, Login, Product, Profile, SignUp} from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {createStackNavigator} from '@react-navigation/stack';
 
-function Index(): React.JSX.Element {
+function TabView(): React.JSX.Element {
   const Tab = createBottomTabNavigator();
 
   const screenOptions = ({route}: any) => ({
@@ -50,11 +51,35 @@ function Index(): React.JSX.Element {
         name="Favorites"
         options={{
           tabBarLabel: 'Favorites',
+          headerShown: true,
         }}
         component={Favorites}
       />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
+  );
+}
+
+function Index(): React.JSX.Element {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Dashboard"
+        options={{headerShown: false}}
+        component={TabView}
+      />
+      <Stack.Screen
+        name="Login"
+        options={{headerShown: false}}
+        component={Login}
+      />
+      <Stack.Screen
+        name="SignUp"
+        options={{headerShown: false}}
+        component={SignUp}
+      />
+    </Stack.Navigator>
   );
 }
 

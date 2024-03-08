@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const style = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
   header: {
     height: 250,
     backgroundColor: 'tomato',
@@ -19,23 +23,33 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     marginVertical: 8,
-    gap: 4,
+    gap: 10,
   },
   box: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginVertical: 2,
   },
   boxItem: {
-    width: '46%',
+    width: 200,
     padding: 10,
     alignItems: 'center',
+    // borderWidth: 1,
+    borderColor: '#e4e4e4',
+    borderRadius: 10,
+    marginHorizontal: 5,
+    backgroundColor: 'white',
+  },
+  verticalBox: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    marginVertical: 5,
+    gap: 20,
+    padding: 10,
     borderWidth: 1,
     borderColor: '#e4e4e4',
     borderRadius: 10,
   },
+  rating: {},
 });
 
 export default style;

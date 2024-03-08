@@ -1,4 +1,4 @@
-import {Image, Chip} from '@rneui/themed';
+import {Image, Chip, Rating} from '@rneui/themed';
 import React from 'react';
 import {ScrollView, StatusBar, Text, View} from 'react-native';
 import style from './style';
@@ -10,48 +10,56 @@ function Index(): React.JSX.Element {
       name: 'Chair',
       price: 2500,
       imgLink: Img,
+      comment: 'amountValidator is an array of custom validators...',
       rating: 5,
     },
     {
       name: 'Hero',
       price: 2100,
       imgLink: Img,
+      comment: 'amountValidator is an array of custom validators...',
       rating: 4,
     },
     {
       name: 'Boxes',
       price: 5500,
       imgLink: Img,
+      comment: 'amountValidator is an array of custom validators...',
       rating: 3,
     },
     {
       name: 'Boriyata',
       price: 3500,
       imgLink: Img,
+      comment: 'amountValidator is an array of custom validators...',
       rating: 2,
     },
     {
       name: 'Chair Works',
       price: 2500,
       imgLink: Img,
+      comment: 'amountValidator is an array of custom validators...',
       rating: 5,
     },
     {
       name: 'Hero Parts',
       price: 2100,
       imgLink: Img,
+      comment: 'amountValidator is an array of custom validators...',
       rating: 4,
     },
     {
       name: 'Boxes Parts',
       price: 5500,
       imgLink: Img,
+      comment: 'amountValidator is an array of custom validators...',
       rating: 3,
     },
     {
       name: 'Boriyata',
       price: 3500,
       imgLink: Img,
+      comment: 'amountValidator is an array of custom validators...',
       rating: 2,
     },
   ];
@@ -63,7 +71,9 @@ function Index(): React.JSX.Element {
         <View style={[style.header]}>
           <Image source={Img} style={{width: 150, height: 150}} />
         </View>
-        <View style={[style.chipBox, {marginHorizontal: 6}]}>
+        <ScrollView
+          horizontal={true}
+          style={[style.chipBox, {marginHorizontal: 6}]}>
           <View style={[style.chip]}>
             <Chip title="Sofa" type="solid" color="secondary" />
             <Chip title="Chair" type="outline" />
@@ -73,73 +83,57 @@ function Index(): React.JSX.Element {
             <Chip title="Table" type="outline" />
             <Chip title="kitchen" type="outline" />
           </View>
+        </ScrollView>
+        <View style={{marginHorizontal: 10}}>
+          <ScrollView horizontal={true} style={[style.box]}>
+            {product.map((item: any, index: number) => (
+              <View key={item.name + index} style={[style.boxItem]}>
+                <Image
+                  source={item.imgLink}
+                  style={{width: 130, marginBottom: 10, height: 130}}
+                />
+                <Text
+                  // eslint-disable-next-line react-native/no-inline-styles
+                  style={{
+                    fontWeight: '600',
+                    color: 'black',
+                  }}>
+                  {item.name}
+                </Text>
+                <Text>Rs.{item.price.toFixed(2)}</Text>
+              </View>
+            ))}
+          </ScrollView>
+          <View style={[style.box, {}]}>
+            {product.slice(0, 4).map((item: any, index: number) => (
+              <View key={index} style={[style.verticalBox]}>
+                <Image
+                  source={item.imgLink}
+                  style={{width: 100, marginBottom: 10, height: 90}}
+                />
+                <View>
+                  <Text
+                    // eslint-disable-next-line react-native/no-inline-styles
+                    style={{
+                      fontWeight: '600',
+                      color: 'black',
+                    }}>
+                    {item.name}
+                  </Text>
+                  <Text>Rs.{item.price.toFixed(2)}</Text>
+                  <Text style={{width: 205}}>{item.comment}</Text>
+                  {/* <Rating
+                    ratingCount={4}
+                    readonly={false}
+                    showReadOnlyText={true}
+                    startingValue={5}
+                    style={style.rating}
+                  /> */}
+                </View>
+              </View>
+            ))}
+          </View>
         </View>
-        <View style={[style.box, {marginVertical: 8}]}>
-          {product.map((item: any, index: number) => (
-            <View key={item.name + index} style={[style.boxItem]}>
-              <Image
-                source={item.imgLink}
-                style={{width: 130, marginBottom: 10, height: 130}}
-              />
-              <Text
-                style={{
-                  fontWeight: '600',
-                  color: 'black',
-                }}>
-                {item.name}
-              </Text>
-              <Text>Rs.{item.price.toFixed(2)}</Text>
-            </View>
-          ))}
-        </View>
-
-        {/* <Tab
-          value={TabIndex}
-          onChange={e => setTabIndex(e)}
-          indicatorStyle={{
-            backgroundColor: 'white',
-            height: 3,
-          }}
-          variant="primary">
-          <Tab.Item
-            title="Recent"
-            titleStyle={{fontSize: 12}}
-            icon={{name: 'timer', type: 'ionicon', color: 'white'}}
-          />
-          <Tab.Item
-            title="favorite"
-            titleStyle={{fontSize: 12}}
-            icon={{name: 'heart', type: 'ionicon', color: 'white'}}
-          />
-          <Tab.Item
-            title="cart"
-            titleStyle={{fontSize: 12}}
-            icon={{name: 'cart', type: 'ionicon', color: 'white'}}
-          />
-        </Tab> */}
-
-        {/* <TabView value={TabIndex} onChange={setTabIndex} animationType="spring">
-          <TabView.Item
-            style={{
-              backgroundColor: 'red',
-              width: '100%',
-              height: 250,
-              borderWidth: 1,
-            }}>
-            <Text>Recent</Text>
-            <Text>Recent</Text>
-          </TabView.Item>
-          <TabView.Item
-            style={{backgroundColor: 'blue', width: '100%', height: 250}}>
-            <Text>Favorite</Text>
-          </TabView.Item>
-          <TabView.Item
-            style={{backgroundColor: 'green', width: '100%', height: 250}}>
-            <Text>Cart</Text>
-          </TabView.Item>
-        </TabView> */}
-        {/* <Text>Home</Text>
-      <Button title="testing" containerStyle={{width: 250}} /> */}
       </View>
     </ScrollView>
   );
