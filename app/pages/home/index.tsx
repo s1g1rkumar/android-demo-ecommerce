@@ -1,5 +1,5 @@
-import {Button, Image, Chip} from '@rneui/themed';
-import React, {useState} from 'react';
+import {Image, Chip} from '@rneui/themed';
+import React from 'react';
 import {ScrollView, StatusBar, Text, View} from 'react-native';
 import style from './style';
 import Img from '../../../assets/images/img1.png';
